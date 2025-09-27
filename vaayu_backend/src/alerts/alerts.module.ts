@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AlertsController } from './alerts.controller';
+import { HttpModule } from '@nestjs/axios';
 import { AlertsService } from './alerts.service';
+import { AlertsController } from './alerts.controller';
+import { NotificationsModule } from '../notifications/notifications.module';
 
 @Module({
+  imports: [HttpModule, NotificationsModule],
   controllers: [AlertsController],
-  providers: [AlertsService]
+  providers: [AlertsService],
+  exports: [AlertsService],
 })
 export class AlertsModule {}
